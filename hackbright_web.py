@@ -35,8 +35,7 @@ def get_student_form():
 def get_student_add_form():
     """Show form for searching for a student"""
 
-    return render_template("add_student.html")
-
+    return render_template("student_add.html")
 
 
 @app.route("/student-added", methods=['Post'])
