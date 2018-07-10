@@ -10,8 +10,9 @@ app.secret_key = "SEEEECCREEEET"
 
 @app.route("/")
 def show_homepage():
-
-    return render_template("")
+    projects = hackbright.get_all_projects()
+    githubs = hackbright.get_all_students()
+    return render_template("home.html", projects=projects, githubs=githubs)
 
 @app.route("/student")
 def get_student():

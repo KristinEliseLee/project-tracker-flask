@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Project Search</title>{% endblock %}
+
+{% block content%}
+<form action="/project">
+	<label> Enter Project Title
+		<input type="text" name="title">
+	</label>
+	<input type="submit" value = "Show Project">
+</form>
+
+{% endblock %}
