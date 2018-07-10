@@ -4,4 +4,10 @@
   <h1>{{ first }} {{ last }}</h1>
 
   <p>GitHub Account: {{ github }}</p>
+
+  <ul>
+  {% for title, grade in grades %}
+  	<li>Project: <a href="/project?title={{title}}">{{title}}</a>, Grade: {{grade}}</li>
+  {% endfor %}
+  </ul>
 {% endblock %}

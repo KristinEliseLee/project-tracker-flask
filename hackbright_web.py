@@ -8,6 +8,11 @@ app = Flask(__name__)
 
 app.secret_key = "SEEEECCREEEET"
 
+@app.route("/")
+def show_homepage():
+
+    return render_template("")
+
 @app.route("/student")
 def get_student():
     """Show information about a student."""
@@ -15,11 +20,13 @@ def get_student():
     github = request.args.get('github')
 
     first, last, github = hackbright.get_student_by_github(github)
+    grades = hackbright.get_grades_by_github(github)
 
     html = render_template("student_info.html",
                            first=first,
                            last=last,
-                           github=github)
+                           github=github,
+                           grades=grades)
 
     return html
 
@@ -38,7 +45,7 @@ def get_student_add_form():
     return render_template("student_add.html")
 
 
-@app.route("/student-added", methods=['Post'])
+@app.route("/student-add", methods=['POST'])
 def add_student():
     """Add a student"""
     first_name = request.form.get('first_name')
@@ -49,6 +56,20 @@ def add_student():
     flash(f"{first_name} added")
 
     return redirect("/student-search")
+
+@app.route("/project-search")
+def get_project_form():
+
+    return render_template("project_search.html")
+
+
+@app.route("/project")   
+def get_project():
+    title = request.args.get('title')
+    project = hackbright.get_project_by_title(title)
+    grades = hackbright.get_grades_by_title(title)
+
+    return render_template("project_info.html", project=project, grades=grades)
 
 
 if __name__ == "__main__":
