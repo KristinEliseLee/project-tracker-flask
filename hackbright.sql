@@ -164,9 +164,10 @@ ALTER TABLE ONLY public.students ALTER COLUMN id SET DEFAULT nextval('public.stu
 
 COPY public.grades (id, student_github, project_title, grade) FROM stdin;
 1	jhacks	Markov	10
-2	jhacks	Blockly	2
 3	sdevelops	Blockly	100
 4	sdevelops	Markov	50
+2	jhacks	Blockly	20
+5	ptate	Markov	50
 \.
 
 
@@ -174,7 +175,7 @@ COPY public.grades (id, student_github, project_title, grade) FROM stdin;
 -- Name: grades_id_seq; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.grades_id_seq', 4, true);
+SELECT pg_catalog.setval('public.grades_id_seq', 5, true);
 
 
 --
@@ -185,6 +186,8 @@ COPY public.projects (id, title, description, max_grade) FROM stdin;
 1	Markov	Tweets generated from Markov chains	50
 2	Blockly	Programmatic Logic Puzzle Game	10
 5	Wits and Wagers	Bidding Game	150
+3	Ubermelon	Ecommerce site for buying melons.	50
+4	Balloonicorn Party	Set up the RSVP website for a party	50
 \.
 
 
@@ -192,7 +195,7 @@ COPY public.projects (id, title, description, max_grade) FROM stdin;
 -- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: user
 --
 
-SELECT pg_catalog.setval('public.projects_id_seq', 2, true);
+SELECT pg_catalog.setval('public.projects_id_seq', 5, true);
 
 
 --
