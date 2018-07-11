@@ -1,0 +1,13 @@
+/* Homepage */
+
+body {
+    background-color: #F0F8FF;
+    color: #2a607c;
+/*    text-align: center;
+*/}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;  /* required because fixed position */
+}

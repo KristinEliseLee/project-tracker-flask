@@ -1,10 +1,19 @@
 <!doctype html>
 <html>
 <head>
+	<link rel="stylesheet" href="/static/styles.css">
 	{% block title %}
 	{% endblock %}
 </head>
 <body>
+	<div id="navigation"> 
+		<a href="/">Home</a>
+		<a href="/student-search">Search for Student</a>
+		<a href="/student-add">Add a Student</a>
+		<a href="/project-search">Search for Project</a>
+		<a href="/project-add">Add a Project</a>
+		<a href="/assign-grade">Assign a Grade</a>
+	</div>
 	<ul>
 		{% for message in get_flashed_messages() %}
 		<li>{{message}}</li>
