@@ -56,7 +56,27 @@ def add_student():
     hackbright.make_new_student(first_name, last_name, github)
     flash(f"{first_name} added")
 
-    return redirect("/student-search")
+    return redirect("/")
+
+
+@app.route("/project-add")
+def get_project_add_form():
+    """Show form for adding a project"""
+
+    return render_template("project_add.html")
+
+
+@app.route("/project-add", methods=['POST'])
+def add_project():
+    """Add a project"""
+    title = request.form.get('title')
+    description = request.form.get('description')
+    max_grade = request.form.get('max_grade')
+    hackbright.make_new_project(title, description, max_grade)
+    flash(f"{title} added")
+
+    return redirect("/")
+
 
 @app.route("/project-search")
 def get_project_form():
@@ -64,13 +84,39 @@ def get_project_form():
     return render_template("project_search.html")
 
 
-@app.route("/project")   
+@app.route("/project")
 def get_project():
     title = request.args.get('title')
     project = hackbright.get_project_by_title(title)
     grades = hackbright.get_grades_by_title(title)
 
     return render_template("project_info.html", project=project, grades=grades)
+
+
+@app.route("/assign-grade")
+def get_assign_grade_form():
+    titles = hackbright.get_all_projects()
+    githubs = hackbright.get_all_students()
+
+    return render_template("assign_grade.html", titles=titles, githubs=githubs)
+
+
+@app.route("/assign-grade", methods=['POST'])
+def assign_grade():
+    title = request.form.get('title')
+    github = request.form.get('github')
+    grade = request.form.get('grade')
+
+    current_grade = hackbright.get_grade_by_github_title(github, title)
+
+    if not current_grade:
+        hackbright.assign_grade(github, title, grade)
+        flash(f"Grade added")
+    else:
+        hackbright.update_grade(github, title, grade)
+        flash(f"Grade updated")
+
+    return redirect('/')
 
 
 if __name__ == "__main__":
