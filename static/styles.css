@@ -3,8 +3,18 @@
 body {
     background-color: #F0F8FF;
     color: #2a607c;
-/*    text-align: center;
-*/}
+}
+
+#navigation {
+    text-align:center;
+    border: solid #2a607c 3px;
+}
+
+a {
+    color: #DAA520;
+}
+
+s
 
 footer {
     position: fixed;
